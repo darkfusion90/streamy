@@ -10,8 +10,6 @@ import StreamShow from './streams/StreamShow';
 
 import Header from './Header';
 
-//import NotFoundError from './NotFoundError';
-
 const App = () => {
     return (
         <div className="ui container">
