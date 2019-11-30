@@ -5,11 +5,16 @@ import { fetchStream, deleteStream } from '../../actions/stream-actions';
 
 import Modal from '../Modal';
 import LoaderDisplay from '../LoaderDisplay';
+import Error404 from '../http-errors/404';
 import history from '../../history';
 
 class StreamDelete extends React.Component {
+    state = { streamAvailable: null };
+
     componentDidMount() {
-        this.props.fetchStream(this.props.match.params.id);
+        this.props.fetchStream(this.props.match.params.id).then(() => { }, rejected => {
+            this.setState({ streamAvailable: false })
+        });
     }
 
     onClickApproveButton = () => {
@@ -17,6 +22,7 @@ class StreamDelete extends React.Component {
             return;
         }
         this.props.deleteStream(this.props.stream.id);
+        history.push('/');
     }
 
     onClickCancelButton = () => {
@@ -24,6 +30,10 @@ class StreamDelete extends React.Component {
     }
 
     render() {
+
+        if(this.state.streamAvailable !== null && !this.state.streamAvailable){
+            return <Error404 />
+        }
 
         if (!this.props.stream) {
             return <LoaderDisplay text="Loading. Please Wait..." />;
