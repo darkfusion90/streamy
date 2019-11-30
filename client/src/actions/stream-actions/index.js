@@ -1,10 +1,17 @@
+import history from '../../history';
+
 import streams from '../../apis/streams';
 import { CREATE_STREAM, EDIT_STREAM, DELETE_STREAM, FETCH_STREAMS, FETCH_STREAM } from '../types';
 
-export const createStream = formValues => async dispatch => {
-    const response = await streams.post("/streams", formValues);
+export const createStream = formValues => async (dispatch, getState) => {
+    const response = await streams.post(
+        "/streams",
+        { ...formValues, 'userId': getState().auth.userId }
+    );
 
     dispatch({ type: CREATE_STREAM, payload: response.data });
+    //take user to root page after the stream was created
+    history.push('/');
 }
 
 export const editStream = (id, formValues) => async dispatch => {
@@ -20,14 +27,13 @@ export const deleteStream = id => async dispatch => {
 }
 
 export const fetchStream = id => async dispatch => {
-    const response = await streams.post(`/streams/${id}`);
+    const response = await streams.get(`/streams/${id}`);
 
     dispatch({ type: FETCH_STREAM, payload: response.data });
 }
 
 export const fetchStreams = () => async dispatch => {
     const response = await streams.get("/streams");
-
     dispatch({ type: FETCH_STREAMS, payload: response.data });
 }
 
