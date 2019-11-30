@@ -4,12 +4,9 @@ import ReactDOM from 'react-dom';
 import history from '../history';
 
 class Modal extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isVisible: true,
-            isActive: true
-        }
+    state = {
+        isVisible: true,
+        isActive: true
     }
 
     hideModal = () => {
@@ -34,7 +31,7 @@ class Modal extends React.Component {
         const active = this.state.isActive ? "active" : "";
 
         return ReactDOM.createPortal(
-            <div onClick={()=>history.push('/')} className={`ui dimmer modals ${visible} ${active}`}>
+            <div onClick={() => history.push('/')} className={`ui dimmer modals ${visible} ${active}`}>
                 <div
                     onClick={e => e.stopPropagation()}
                     className={`ui standard modal ${visible} ${active}`}
