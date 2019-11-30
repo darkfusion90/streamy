@@ -6,7 +6,7 @@ class StreamForm extends React.Component {
         return (
             <div className="field">
                 <label>{formProps.label}</label>
-                <input {...formProps.input} required />
+                <input {...formProps.input} required autoFocus={formProps.input.name === "title"} />
             </div>
         );
     }
@@ -21,7 +21,8 @@ class StreamForm extends React.Component {
                 <Field
                     name="title"
                     component={this.renderTextInput}
-                    label="Enter Title" />
+                    label="Enter Title"
+                />
                 <Field
                     name="description"
                     component={this.renderTextInput}
