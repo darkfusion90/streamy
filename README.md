@@ -1,2 +1,1 @@
-# twitch-clone
-A simple clone of twitch.com build using react and redux as primary focus
+Self Learning project focusing on react and redux
