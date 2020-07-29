@@ -15,10 +15,13 @@
     height: 100%;
     width: 100%;
     font-family: 'Roboto', sans-serif;
+    color: #444;
 }
 
 .error-img{
-    width: 25vh;
+    max-width: 100px;
+    width: 100%;
+    height: auto;
 }
 
 .error-message {

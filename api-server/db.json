@@ -1,19 +1,16 @@
 {
   "streams": [
     {
-      "title": "yay 2",
-      "description": "yay man 2",
+      "title": "Other Stream",
+      "description": "This is good too!",
+      "userId": "106584371396799908601",
       "id": 2
     },
     {
-      "title": "yay 2",
-      "description": "yay man 2",
+      "title": "My new stream lal",
+      "description": "yay i love me! and you ;)",
+      "userId": "101495694951379225270",
       "id": 3
-    },
-    {
-      "title": "lol",
-      "description": "lol man lol",
-      "id": 4
     }
   ]
 }

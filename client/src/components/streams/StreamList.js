@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
 import { fetchStreams } from '../../actions/stream-actions'
 
 class StreamList extends React.Component {
@@ -42,7 +42,9 @@ class StreamList extends React.Component {
                     <i className="large middle aligned icon camera" />
 
                     <div className="content">
-                        <h4 style={{ display: 'inline' }}>{stream.title}</h4>
+                        <Link to={`/streams/${stream.id}`}>
+                            <h4 style={{ display: 'inline' }}>{stream.title}</h4>
+                        </Link>
                         <div className="description">
                             {stream.description}
                         </div>
@@ -51,15 +53,25 @@ class StreamList extends React.Component {
             )
         });
     }
+    count = 0
+    fetchh = async () => {
+        console.log("meowww" + this.count++)
+        const response = await axios('/ping')
+        console.log(response.data)
+    }
 
     renderCreateStreamButton() {
+        console.log('rendering button')
+        /*<Link to="/streams/new" className="ui button primary">
+                        Create New Stream
+                    </Link>*/return (<div style={{ textAlign: "right" }}>
+            <button onClick={this.fetchh}>Meow</button>
+        </div>)
         if (this.props.isSignedIn) {
             return (
                 //push the button to right end of the screen
                 <div style={{ textAlign: "right" }}>
-                    <Link to="/streams/new" className="ui button primary">
-                        Create New Stream
-                    </Link>
+                    <button onClick={this.fetchh}>Meow</button>
                 </div>
             );
         }
